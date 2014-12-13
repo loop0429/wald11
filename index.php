@@ -3,24 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Wald11 Schedule</title>
-<style>
-a {
-	color: #222;
-	text-decoration: none;
-}
-
-a:hover {
-	text-decoration: underline;
-}
-
-.sat a {
-	color: #00f;
-}
-
-.sun a {
-	color: #f00;
-}
-</style>
+<link rel="stylesheet" href="css/normalize.css">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <?php
