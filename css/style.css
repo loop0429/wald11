@@ -1,9 +1,22 @@
-a {
+*, *:before, *:after {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.schedule {
+	margin: 0;
+	padding: 0;
+}
+
+.schedule a {
 	color: #222;
 	text-decoration: none;
 }
 
-a:hover {
+.schedule a:hover {
 	text-decoration: underline;
 }
 

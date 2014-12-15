@@ -140,7 +140,8 @@
 		return array($month . '-' . $day, $week, $year);
 	}
 ?>
-<ul>
+<h1>Wald11スケジュールショートカット</h1>
+<ul class="schedule">
 <?php
 	//1週間分の日付を作っておく
 	$one_week = array();
