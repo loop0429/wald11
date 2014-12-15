@@ -14,13 +14,21 @@
 <?php
 	/**
 	 * 二文字返す
+	 * 今回はyyとmmとddを返すために使用している。
+	 * @param string $val 文字列
+	 * @param int $pos 文字切り抜き開始位置 
+	 * @return string
 	 */
 	function getNum($val, $pos) {
 		return substr($val, $pos, 2);
 	}
 
 	/**
-	 * 「土曜・日曜・祝日・映画の日」用のclass
+	 * 「土曜・日曜・祝日・映画の日」用のclassを返す
+	 * @param string $d 日付
+	 * @param string $w 曜日
+	 * @param boolean $h 祝日判定
+	 * @return string
 	 */
 	function coloring($d, $w, $h) {
 		$color = '';
@@ -37,6 +45,9 @@
 
 	/**
 	 * liタグを作成して返す
+	 * @param array $ow 一週間分の配列
+	 * @param array $hl 一週間分の祝日判定配列
+	 * @return string
 	 */
 	function createLi($ow, $hl) {
 		$val = explode('-', $ow[0]);
@@ -66,6 +77,8 @@
 	/**
 	 * 祝日かどうか比較するための配列を返す
 	 * 【Thanks】http://www.pahoo.org/e-soul/webtech/php06/php06-31-01.shtm
+	 * @param array $ow 一週間分の配列
+	 * @return array
 	 */
 	function getHolidayList($ow) {
 		$calendar_id = urlencode('ja.japanese#holiday@group.v.calendar.google.com'); //日本の祝日@google
@@ -129,6 +142,8 @@
 
 	/**
 	 * 日付に関する情報を返す
+	 * @param int $i 日付カウントアップ用
+	 * @return string
 	 */
 	function createDate($i) {
 		$date = date('ymdw', strtotime('+ ' . $i . ' days'));
