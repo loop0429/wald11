@@ -7,14 +7,17 @@ a:hover {
 	text-decoration: underline;
 }
 
+.movie,
 .movie a {
 	color: #0f0;
 }
 
+.sat,
 .sat a {
 	color: #00f;
 }
 
+.sun,
 .sun a {
 	color: #f00;
 }

@@ -45,10 +45,19 @@
 		$week = intval($ow[1]);
 		$text = $month . '/' . $day; //表示する文字
 		$class = coloring($day, $week, $hl);
-		$wald11 = 'http://wald11.com/schedule/index.php';
+		$schedule = 'http://wald11.com/schedule/';
+		$xml = 'http://wald11.com/schedule/xml/';
 		$param = '?d=';
+		$join = $year . $month . $day;
+		$li = '';
 
-		$li = '<li' . $class . '><a href="' . $wald11 . $param . $year . $month . $day . '">' . $text . '</a></li>';
+		$result = file_get_contents($xml . $join . '.xml');
+
+		if(!empty($result)) {
+			$li .= '<li' . $class . '><a href="' . $schedule . $param . $join . '">' . $text . '</a></li>';
+		} else {
+			$li .= '<li' . $class . '>' . $text . '(まだスケジュールが出てない)</li>';
+		}
 
 		return $li;
 	}
