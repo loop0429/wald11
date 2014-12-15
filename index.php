@@ -1,5 +1,6 @@
 <?php
 	require_once('constants.php');
+	date_default_timezone_set('Asia/Tokyo'); 
 ?>
 <!DOCTYPE html>
 <html lang="jp">
@@ -64,6 +65,7 @@
 
 	/**
 	 * 祝日かどうか比較するための配列を返す
+	 * 【Thanks】http://www.pahoo.org/e-soul/webtech/php06/php06-31-01.shtm
 	 */
 	function getHolidayList($ow) {
 		$calendar_id = urlencode('ja.japanese#holiday@group.v.calendar.google.com'); //日本の祝日@google
@@ -82,6 +84,7 @@
 		$finish = sprintf("%04d-01-01T00:00:00Z", $year + 2); //検索終了日時。一応2年先まで。
 
 		//googleカレンダーへ取得しに行く
+		//【Doc】https://developers.google.com/google-apps/calendar/v3/reference/events/list
 		$url = "https://www.googleapis.com/calendar/v3/calendars/{$calendar_id}/events?key=" . API_KEY . "&timeMin={$start}&timeMax={$finish}&maxResults={$len}&orderBy=startTime&singleEvents=true";
 		$result = file_get_contents($url);
 		$json = json_decode($result);
