@@ -24,11 +24,11 @@
 	function coloring($d, $w, $h) {
 		$color = '';
 		if(intval($d) === 1) {
-			$color .= ' class="movie"';
+			$color .= ' class="movie"'; //映画の日
 		} else if($w === 0 || $h) {
-			$color .= ' class="sun"';
+			$color .= ' class="sun"'; //日曜・祝日
 		} else if($w === 6) {
-			$color .= ' class="sat"';
+			$color .= ' class="sat"'; //土曜
 		}
 
 		return $color;
@@ -43,7 +43,7 @@
 		$month = $val[0];
 		$day = $val[1];
 		$week = intval($ow[1]);
-		$text = $month . '/' . $day;
+		$text = $month . '/' . $day; //表示する文字
 		$class = coloring($day, $week, $hl);
 		$wald11 = 'http://wald11.com/schedule/index.php';
 		$param = '?d=';
@@ -54,7 +54,7 @@
 	}
 
 	/**
-	 * 祝日かどうかの配列を返す
+	 * 祝日かどうか比較するための配列を返す
 	 */
 	function getHolidayList($ow) {
 		$calendar_id = urlencode('ja.japanese#holiday@group.v.calendar.google.com'); //日本の祝日@google
@@ -72,7 +72,7 @@
 		$start = sprintf("%04d-{$month}-{$day}T00:00:00Z", $year); //検索開始日時
 		$finish = sprintf("%04d-01-01T00:00:00Z", $year + 2); //検索終了日時。一応2年先まで。
 
-		//googleマップへ取得しに行く
+		//googleカレンダーへ取得しに行く
 		$url = "https://www.googleapis.com/calendar/v3/calendars/{$calendar_id}/events?key=" . API_KEY . "&timeMin={$start}&timeMax={$finish}&maxResults={$len}&orderBy=startTime&singleEvents=true";
 		$result = file_get_contents($url);
 		$json = json_decode($result);
@@ -96,13 +96,16 @@
 					$s = $year . '-' . $ow[$i][0];
 					$tmp = false;
 
+					//$holiday_listとの比較
 					for($j = 0; $j < count($item); $j++) {
 						$t = $item[$j]->start->date;
 
+						//祝日と判別する
 						if($t === $s) {
 							$tmp = true;
 						}
 					}
+					//祝日であれば1を代入
 					if($tmp) {
 						$holiday_list[$i] = 1;
 					}
@@ -127,15 +130,18 @@
 ?>
 <ul>
 <?php
+	//1週間分の日付を作っておく
 	$one_week = array();
 
 	for($i = 0; $i < 7; $i++) {
 		$one_week[$i] = createDate($i);
 	}
 
+	//祝日リストの作成
 	$holiday_list = getHolidayList($one_week);
 	$len = count($one_week);
 
+	//描画
 	for($i = 0; $i < $len; $i++) {
 		$li = createLi($one_week[$i], $holiday_list[$i]);
 ?>
