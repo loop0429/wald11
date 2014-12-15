@@ -19,11 +19,13 @@
 	}
 
 	/**
-	 * 土曜・日曜・祝日用のclass
+	 * 「土曜・日曜・祝日・映画の日」用のclass
 	 */
-	function coloring($w, $h) {
+	function coloring($d, $w, $h) {
 		$color = '';
-		if($w === 0 || $h) {
+		if(intval($d) === 1) {
+			$color .= ' class="movie"';
+		} else if($w === 0 || $h) {
 			$color .= ' class="sun"';
 		} else if($w === 6) {
 			$color .= ' class="sat"';
@@ -42,7 +44,7 @@
 		$day = $val[1];
 		$week = intval($ow[1]);
 		$text = $month . '/' . $day;
-		$class = coloring($week, $hl);
+		$class = coloring($day, $week, $hl);
 		$wald11 = 'http://wald11.com/schedule/index.php';
 		$param = '?d=';
 
