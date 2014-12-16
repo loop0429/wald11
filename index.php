@@ -189,5 +189,6 @@
 	}
 ?>
 </ul>
+<p class="github text-right"><a href="https://github.com/loop0429/wald11">GitHub</a></p>
 </body>
 </html>
