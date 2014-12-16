@@ -6,7 +6,7 @@
 <html lang="jp">
 <head>
 <meta charset="UTF-8">
-<title>Wald11 Schedule</title>
+<title>Wald11 Schedule ShortCut</title>
 <link rel="stylesheet" href="css/normalize.css">
 <link rel="stylesheet" href="css/style.css">
 </head>
