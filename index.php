@@ -1,6 +1,6 @@
 <?php
 	require_once('constants.php');
-	date_default_timezone_set('Asia/Tokyo'); 
+	date_default_timezone_set('Asia/Tokyo');
 ?>
 <!DOCTYPE html>
 <html lang="jp">
@@ -46,6 +46,16 @@
 	}
 
 	/**
+	 * 曜日名を返す
+	 * @param int $n 曜日番号
+	 * @return string
+	 */
+	function getWeekName($n) {
+		$name = array('SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT');
+		return $name[$n];
+	}
+
+	/**
 	 * liタグを作成して返す
 	 * @param array $ow 一週間分の配列
 	 * @param array $hl 一週間分の祝日判定配列
@@ -68,9 +78,9 @@
 		$result = file_get_contents($xml . $join . '.xml');
 
 		if(!empty($result)) {
-			$li .= '<li' . $class . '><a href="' . $schedule . $param . $join . '">' . $text . '</a></li>';
+			$li .= '<li' . $class . '><a href="' . $schedule . $param . $join . '"><span>' . $text . '(' . getWeekName($week) . ')</span></a></li>';
 		} else {
-			$li .= '<li' . $class . '>' . $text . '</li>';
+			$li .= '<li' . $class . '><span>' . $text. '(' . getWeekName($week) . ')</span></li>';
 		}
 
 		return $li;
