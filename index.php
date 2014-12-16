@@ -70,7 +70,7 @@
 		if(!empty($result)) {
 			$li .= '<li' . $class . '><a href="' . $schedule . $param . $join . '">' . $text . '</a></li>';
 		} else {
-			$li .= '<li' . $class . '>' . $text . '(まだスケジュールが出てない)</li>';
+			$li .= '<li' . $class . '>' . $text . '</li>';
 		}
 
 		return $li;
