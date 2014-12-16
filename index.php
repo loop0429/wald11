@@ -34,10 +34,12 @@
 		$color = '';
 		if(intval($d) === 1) {
 			$color .= ' class="movie"'; //映画の日
-		} else if($w === 0 || $h) {
-			$color .= ' class="sun"'; //日曜・祝日
-		} else if($w === 6) {
-			$color .= ' class="sat"'; //土曜
+		} else {
+			if($w === 0 || $h) {
+				$color .= ' class="sun"'; //日曜・祝日
+			} else if($w === 6) {
+				$color .= ' class="sat"'; //土曜
+			}
 		}
 
 		return $color;
@@ -155,7 +157,6 @@
 		return array($month . '-' . $day, $week, $year);
 	}
 ?>
-<h1>Wald11スケジュールショートカット</h1>
 <ul class="schedule">
 <?php
 	//1週間分の日付を作っておく
